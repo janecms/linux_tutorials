@@ -21,11 +21,13 @@ DESTINATION=/archive/$FILE
 #
 # Check Backup Config file exists
 #
-
-if [ -f $CONFIG_FILE ] # Make sure the config file still exists.
-then # If it exists, do nothing but continue on.
-echo
-else # If it doesn't exist, issue error & exit script.
+# Make sure the config file still exists.
+if [ -f $CONFIG_FILE ] 
+# If it exists, do nothing but continue on.
+then 
+	echo
+# If it doesn't exist, issue error & exit script.	
+else 
 echo
 echo "$CONFIG_FILE does not exist."
 echo "Backup not completed due to missing Configuration File"
@@ -37,12 +39,14 @@ fi
 #
 # Build the names of all the files to backup
 #
-FILE_NO=1 # Start on Line 1 of Config File.
-exec < $CONFIG_FILE # Redirect Std Input to name of Config File
+# Start on Line 1 of Config File.
+FILE_NO=1 
+# Redirect Std Input to name of Config File
+exec < $CONFIG_FILE 
 #
 read FILE_NAME # Read 1st record
-#
-while [ $? -eq 0 ] # Create list of files to backup.
+# Create list of files to backup.
+while [ $? -eq 0 ] 
 do
 # Make sure the file or directory exists.
 if [ -f $FILE_NAME -o -d $FILE_NAME ]
